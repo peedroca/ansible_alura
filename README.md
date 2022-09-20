@@ -1,3 +1,5 @@
-# Alura-TIPOCURSO
+# Ansible: sua infraestrutura como código
 
-Nome do Curso - NOMECURSO
+Invenroty: Máquinas da sua infraestrutura.
+Playbook: Passo a passo de configuração das máquinas.
+Roles: Modularizar o código
