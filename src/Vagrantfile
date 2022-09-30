@@ -2,6 +2,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "wordpress" do |wordpress|
         wordpress.vm.box = "ubuntu/trusty64"
         wordpress.vm.network "public_network", ip: '192.168.0.121', bridge: "Realtek PCIe GbE Family Controller"
+        wordpress.vm.network "forwarded_port", guest: 3306, host: 8336
 
         wordpress.vm.provider "virtualbox" do |vb|
             vb.memory = 1024

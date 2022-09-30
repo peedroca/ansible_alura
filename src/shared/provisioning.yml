@@ -7,3 +7,30 @@
           'php5-mcrypt', 'mysql-server-5.6', 'python-mysqldb', 'php5-mysql']
           state: latest
         become: yes
+
+      - name: 'Cria banco de dados MySQL'
+        mysql_db:
+          name: wordpress_db
+          login_user: root
+          state: present
+        become: yes
+
+      - name: 'Cria usuário do MySQL'
+        no_log: yes
+        mysql_user: 
+          login_user: root
+          name: wordpress_user
+          password: '1234'
+          priv: 'wordpress_db.*:ALL'
+          host: '%'
+          state: present
+        become: yes
+
+      - name: 'Garante que meu ip possa acessar o banco'
+        ini_file:
+          dest: /etc/mysql/my.cnf
+          section: mysqld
+          option: "bind-address"
+          value: "192.168.0.110"
+        register: my_cnf
+        become: yes
